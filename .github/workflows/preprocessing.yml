@@ -1,0 +1,41 @@
+name: Run Preprocessing on Push
+
+on:
+  push:
+    paths:
+      - 'preprocessing/**'
+      - 'data/**'
+      - 'requirements.txt'
+      - '.github/workflows/preprocessing.yml'
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.7'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run preprocessing script
+      run: |
+        python preprocessing/automate_nabilsaragih.py
+
+    - name: Upload output artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: personality_preprocessing
+        path: |
+          output/X_train_scaled.csv
+          output/X_test_scaled.csv
+          output/ekstro_intro_preprocessing.csv
+          output/preprocessor_pipeline.joblib
