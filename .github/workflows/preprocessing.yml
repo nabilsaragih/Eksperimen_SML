@@ -37,5 +37,7 @@ jobs:
         path: |
           output/X_train_scaled.csv
           output/X_test_scaled.csv
+          output/y_train.csv
+          output/y_test.csv
           output/ekstro_intro_preprocessing.csv
           output/preprocessor_pipeline.joblib
