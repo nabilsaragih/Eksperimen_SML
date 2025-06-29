@@ -60,6 +60,10 @@ def preprocess_data(data, target_column, save_path, file_path):
     X_train.to_csv("output/X_train_scaled.csv", index=False)
     X_test.to_csv("output/X_test_scaled.csv", index=False)
 
+    y_train.to_csv("output/y_train.csv", index=False)
+    y_test.to_csv("output/y_test.csv", index=False)
+
+
     joblib.dump(preprocessor, save_path)
     print(f"Pipeline disimpan di: {save_path}")
 
